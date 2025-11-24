@@ -13,3 +13,15 @@ class Author:
 
     def total_royalties(self):
         return sum(contract.royalties for contract in self.contracts())
+
+
+class Book:
+    def __init__(self, title):
+        self.title = title
+
+    def contracts(self):
+        return [contract for contract in Contract.all if contract.book == self]
+
+    def authors(self):
+        return list(set(contract.author for contract in self.contracts()))
+
